@@ -1,0 +1,31 @@
+name: Extraer Materiales
+
+on:
+  push:
+    paths:
+      - GM_2019_V1_1-303.pdf
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    - name: Instalar dependencias
+      run: pip install -r requirements.txt
+
+    - name: Ejecutar script
+      run: python extract_materiales.py
+
+    - name: Subir Excel generado
+      uses: actions/upload-artifact@v3
+      with:
+        name: materiales
+        path: materiales.xlsx
