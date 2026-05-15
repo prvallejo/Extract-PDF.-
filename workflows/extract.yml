@@ -29,3 +29,10 @@ jobs:
       with:
         name: materiales
         path: materiales.xlsx
+    - name: Commit y push Excel
+    run: |
+    git config --global user.name "github-actions"
+    git config --global user.email "actions@github.com"
+    git add docs/materiales.xlsx
+    git commit -m "Actualizar Excel generado"
+    git push
