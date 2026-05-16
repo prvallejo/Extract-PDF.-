@@ -30,11 +30,9 @@ jobs:
           cp materiales.xlsx docs/materiales.xlsx
 
       - name: Commit y push Excel
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
-          git add docs/materiales.xlsx || echo "No hay Excel para agregar"
-          git commit -m "Actualizar Excel generado" || echo "Sin cambios que commitear"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: github-actions
+          author_email: actions@github.com
+          message: "Actualizar Excel generado"
+          add: "docs/materiales.xlsx" 
